@@ -1,0 +1,8 @@
+1 - Get serial number of RAM chips.
+wmic memorychip get serialnumber
+2- Get serial number for Hard disks
+wmic diskdrive get serialnumber
+3- Get serial number for mother boards
+wmic baseBoard get serialnumber
+4- get Serial number for cdrom drive
+wmic cdrom where drive='d:' get serialnumber
