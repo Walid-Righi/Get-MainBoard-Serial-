@@ -48,11 +48,11 @@ var
         OleCheck(CreateBindCtx(0, BindCtx));
         OleStr := StringtoOLEStr(objectName);
         try
-          OleCheck(MkParseDisplayName (BindCtx, OleStr, chEaten, Moniker));
-          OleCheck(Moniker.BindToObject(BindCtx, nil, IDispatch, Result));
+          OleCheck(MkParseDisplayName (BindCtx, OleStr, chEaten, Moniker));          
         finally
           SysFreeString(OleStr);
         end;
+        OleCheck(Moniker.BindToObject(BindCtx, nil, IDispatch, Result));
      end;
 begin
    Result :=  '';
