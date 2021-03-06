@@ -43,10 +43,16 @@ var
             chEaten : Integer;
             BindCtx : IBindCtx;
             Moniker : Imoniker;
+            OleStr: PWideChar;
      Begin
         OleCheck(CreateBindCtx(0, BindCtx));
-        OleCheck(MkParseDisplayName (BindCtx, StringtoOLEStr(objectName), chEaten, Moniker));
-        OleCheck(Moniker.BindToObject(BindCtx, nil, IDispatch, Result));
+        OleStr := StringtoOLEStr(objectName);
+        try
+          OleCheck(MkParseDisplayName (BindCtx, OleStr, chEaten, Moniker));
+          OleCheck(Moniker.BindToObject(BindCtx, nil, IDispatch, Result));
+        finally
+          SysFreeString(OleStr);
+        end;
      end;
 begin
    Result :=  '';
